@@ -32,11 +32,6 @@ export default {
   components: {
     ModalInfo
   },
-  data () {
-    return {
-      info: []
-    }
-  },
   computed: {
     ...mapGetters(['getModalInfo'])
   }
