@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="$store.state.isModal">
+  <v-dialog v-model="$store.state.isModal" >
     <v-card>
         <v-card-title class="headline grey lighten-2">
             {{ getModalInfo.name }}
@@ -34,6 +34,9 @@ export default {
   },
   computed: {
     ...mapGetters(['getModalInfo'])
+  },
+  mounted () {
+    console.log(this.getModalInfo)
   }
 }
 </script>

@@ -1,11 +1,12 @@
 <template>
     <div>
         <v-list-item v-if="info.type !== 'object' && info.type !== 'array'">
-            <v-list-item-title v-html="`<b>${info.name}:</b> ${info.value}`"></v-list-item-title>
+            <v-list-item-title v-if="info.name=='date'" v-html="`<b>${info.name}: </b>${$options.filters.date(date)}`" > </v-list-item-title>
+            <v-list-item-title v-else v-html="`<b>${info.name}:</b> ${info.value}`"></v-list-item-title>
         </v-list-item>
 
         <v-list-group v-else-if="info.type === 'object'"
-                :value="true"
+                :value="false"
                 no-action>
             <template v-slot:activator>
                 <v-list-item-title v-html="`<b>${info.name}</b>`"></v-list-item-title>
@@ -14,7 +15,9 @@
             v-for="(valueNest,key) in info.value" :key="key"
             link
             >
-                <v-list-item-title v-html="`<b>${key}:</b> ${valueNest}`"></v-list-item-title>
+                <v-list-item-title v-if="info.name!='links' && key!=='url' && key!=='email'" v-html="`<b>${key}:</b> ${valueNest}`"></v-list-item-title>
+                <v-list-item-title v-else-if="key=='email'" v-html="`<b>${key}: </b><a target='_blank' href='mailto:${valueNest}'>${valueNest}</a>`"></v-list-item-title>
+                <v-list-item-title v-else v-html="`<a target='_blank' href='${valueNest}'>${key}</a>`"></v-list-item-title>
             </v-list-item>
         </v-list-group>
 
@@ -25,7 +28,7 @@
         </v-list-item>
 
         <v-list-group v-else-if="info.name === 'maintainers'"
-                :value="true"
+                :value="false"
                 no-action>
             <template v-slot:activator>
                 <v-list-item-title v-html="`<b>${info.name}</b>`"></v-list-item-title>
@@ -34,12 +37,12 @@
                     v-for="(valueNest,key) in info.value" :key="key"
                     link
                     >
-                <v-list-item-title v-html="`<b>Username:</b> ${valueNest.username}; \n <b>Email: </b> ${valueNest.email}`"></v-list-item-title>
+                <v-list-item-title v-html="`<b>Username:</b>${valueNest.username};\n<b>Email: </b> <a target='_blank' href='mailto:${valueNest.email}'>${valueNest.email}</a>`"></v-list-item-title>
             </v-list-item>
         </v-list-group>
 
         <v-list-group v-else
-                :value="true"
+                :value="false"
                 no-action>
             <template v-slot:activator>
                 <v-list-item-title v-html="`<b>${info.name}</b>`"></v-list-item-title>
@@ -67,7 +70,8 @@ export default {
 
   data () {
     return {
-      info: {}
+      info: {},
+      date: ''
     }
   },
   computed: {
@@ -92,17 +96,10 @@ export default {
       }
     }
     this.info = (par)
+    if (this.info.name === 'date') {
+      this.date = new Date(this.info.value)
+    }
+    console.log(this.date)
   }
 }
 </script>
-
-<style lang="scss">
-    .v-list-item__title{
-        white-space: pre-wrap !important;
-    }
-    @media (max-width: 768px) {
-        .v-list-item{
-            padding-left: 0 !important;
-        }
-    }
-</style>

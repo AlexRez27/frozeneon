@@ -49,14 +49,7 @@ export default {
       pageCount: 0,
       itemsPerPage: 10,
       columnNames: [
-        { text: 'Package', value: 'info', sortable: false }
-      ],
-      columnContent: [
-        {
-          name: '',
-          description: '',
-          version: ''
-        }
+        { text: 'Packages', value: 'info', sortable: false }
       ]
     }
   },
@@ -67,7 +60,46 @@ export default {
       this.getModalData({ data: value.package })
       this.$store.state.isModal = true
     }
+  },
+  mounted () {
+    const x = 'Packages'
+    const n = document.querySelector('.v-data-table-header-mobile__wrapper')
+    console.log(window.screen.width)
+    if (n) {
+      n.innerHTML = x
+    }
   }
 }
 
 </script>
+
+<style lang="scss">
+    .v-list-item__title{
+        white-space: pre-wrap !important;
+    }
+    @media (max-width: 768px) {
+        .v-list-item{
+            padding-left: 0 !important;
+        }
+    }
+    @media (max-width: 768px) {
+        .v-data-table-header, .text-start{
+            display: block !important;
+        }
+    }
+    .v-data-table__mobile-row__header{
+        display: none !important;
+    }
+    .v-data-table__mobile-row__cell{
+        text-align: left !important;
+    }
+    .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
+        min-height: 48px !important;
+    }
+    @media (max-width: 600px) {
+        .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
+        height: initial !important;
+        }
+    }
+
+</style>
