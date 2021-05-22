@@ -75,9 +75,19 @@ export default {
     padding: 40px;
   }
   @media (max-width: 900px){
-    .v-card__title{
-      justify-content: center;
+     footer .v-card__title{
+       background-position: left;
+     }
+  }
+
+  @media (max-width: 600px){
+    footer .v-card__title{
+      justify-content: center !important;
       opacity: 1;
+      align-items: flex-end;
+      background-position: top !important;
+      padding: 3px;
+      padding-top: 100px;
     };
   }
   .social{

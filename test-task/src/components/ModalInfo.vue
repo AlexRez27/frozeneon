@@ -37,7 +37,7 @@
                     v-for="(valueNest,key) in info.value" :key="key"
                     link
                     >
-                <v-list-item-title v-html="`<b>Username:</b>${valueNest.username};\n<b>Email: </b> <a target='_blank' href='mailto:${valueNest.email}'>${valueNest.email}</a>`"></v-list-item-title>
+                <v-list-item-title v-html="`<span class='span'><b>Username: </b>${valueNest.username};</span><span class='span'><b>Email: </b> <a target='_blank' href='mailto:${valueNest.email}'>${valueNest.email}</a></span>`"></v-list-item-title>
             </v-list-item>
         </v-list-group>
 
@@ -58,7 +58,6 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 export default {
   name: 'ModalInfo',
   props: {
@@ -75,7 +74,6 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['getModalInfo']),
     keywords: function () {
       return this.getModalInfo.value.join(', ')
     }
@@ -103,3 +101,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .span{
+    display: block;
+  }
+</style>
