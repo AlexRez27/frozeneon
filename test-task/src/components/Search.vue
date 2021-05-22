@@ -1,5 +1,6 @@
 <template>
     <v-container>
+            <h1>NPM SEARCH APP</h1>
       <v-row
         justify="space-between"
       >
@@ -9,7 +10,7 @@
         >
           <v-form ref="form">
             <v-text-field
-              v-model="value"
+              v-model="search"
               label="Enter npm package name you want to find"
             ></v-text-field>
             <v-btn
@@ -29,16 +30,30 @@ import { mapActions } from 'vuex'
 export default {
   name: 'Search',
   data () {
-    return { value: '' }
+    return { search: '' }
   },
   methods: {
     ...mapActions(['getData']),
     async getdata () {
-      if (this.value) {
-        await this.getData({ packageName: this.value })
+      if (this.search) {
+        await this.getData({ packageName: this.search })
         this.$parent._data.showList = true
+        console.log(this.$parent._data.showList)
       }
     }
   }
 }
 </script>
+
+<style>
+  small{
+    color: red;
+    display: block;
+  }
+  .invalid{
+    border-bottom: 1px solid red;
+  }
+  h1  {
+    text-align: center;
+  }
+</style>

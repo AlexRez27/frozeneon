@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-html{
-  height: 100vh !important;
+body{
+  height: 100vh;
 }
 </style>

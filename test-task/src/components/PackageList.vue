@@ -12,6 +12,7 @@
             :items-per-page="itemsPerPage"
             :headers="columnNames"
             :items="getInfo"
+            :loading="!loader"
             @click:row="showModal"
             @page-count="pageCount = $event"
             hide-default-footer
@@ -50,7 +51,8 @@ export default {
       itemsPerPage: 10,
       columnNames: [
         { text: 'Packages', value: 'info', sortable: false }
-      ]
+      ],
+      loader: false
     }
   },
   computed: mapGetters(['getInfo', 'getModalInfo']),
@@ -64,10 +66,11 @@ export default {
   mounted () {
     const x = 'Packages'
     const n = document.querySelector('.v-data-table-header-mobile__wrapper')
-    console.log(window.screen.width)
     if (n) {
       n.innerHTML = x
     }
+    this.loader = true
+    console.log(1111)
   }
 }
 
@@ -81,10 +84,11 @@ export default {
         .v-list-item{
             padding-left: 0 !important;
         }
-    }
-    @media (max-width: 768px) {
         .v-data-table-header, .text-start{
             display: block !important;
+        }
+        .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
+            height: initial !important;
         }
     }
     .v-data-table__mobile-row__header{
@@ -95,11 +99,6 @@ export default {
     }
     .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
         min-height: 48px !important;
-    }
-    @media (max-width: 600px) {
-        .v-data-table > .v-data-table__wrapper > table > tbody > tr > td{
-        height: initial !important;
-        }
     }
 
 </style>

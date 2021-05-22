@@ -28,4 +28,5 @@ export default {
 .v-main__wrap{
   position: initial;
 }
+
 </style>
