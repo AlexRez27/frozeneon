@@ -38,7 +38,6 @@ export default {
       if (this.search) {
         await this.getData({ packageName: this.search })
         this.$parent._data.showList = true
-        console.log(this.$parent._data.showList)
       }
     }
   }

@@ -68,9 +68,9 @@ export default {
     const n = document.querySelector('.v-data-table-header-mobile__wrapper')
     if (n) {
       n.innerHTML = x
+    } if (this.getInfo) {
+      this.loader = true
     }
-    this.loader = true
-    console.log(1111)
   }
 }
 

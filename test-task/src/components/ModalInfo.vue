@@ -97,7 +97,6 @@ export default {
     if (this.info.name === 'date') {
       this.date = new Date(this.info.value)
     }
-    console.log(this.date)
   }
 }
 </script>

@@ -34,9 +34,6 @@ export default {
   },
   computed: {
     ...mapGetters(['getModalInfo'])
-  },
-  mounted () {
-    console.log(this.getModalInfo)
   }
 }
 </script>

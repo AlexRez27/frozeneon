@@ -26,7 +26,7 @@ export default {
 
 <style>
 .v-main__wrap{
-  position: initial;
+  position: static;
 }
 
 </style>
